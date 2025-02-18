@@ -4,6 +4,8 @@ namespace Core\Container;
 
 use Core\Config\Config;
 use Core\Config\ConfigInterface;
+use Core\Database\Database;
+use Core\Database\DatabaseInterface;
 use Core\Http\Request\Request;
 use Core\Http\Request\RequestInterface;
 use Core\Session\Session;
@@ -20,6 +22,7 @@ class Container implements ContainerInterface
     private ?ViewInterface $view = null;
     private ?SessionInterface $session = null;
     private ?ValidatorInterface $validator = null;
+    private ?DatabaseInterface $db = null;
 
     public function getConfig(): ConfigInterface
     {
@@ -66,5 +69,14 @@ class Container implements ContainerInterface
             $this->validator = new Validator();
         }
         return $this->validator;
+    }
+
+    public function getDatabase(): DatabaseInterface
+    {
+        if ($this->db === null) {
+            $config = $this->getConfig();
+            $this->db = new Database($config->get("database"));
+        }
+        return $this->db;
     }
 }
