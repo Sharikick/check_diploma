@@ -1,0 +1,60 @@
+networks:
+  internal:
+    driver: bridge
+
+services:
+  php:
+    container_name: php
+    build:
+      context: ./docker/php
+    volumes:
+      - ./www:/var/www/html
+    networks:
+      - internal
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_DATABASE=diploma_db
+      - DB_USER=tsyden
+      - DB_PASSWORD=kalakal
+    depends_on:
+      - db
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./www:/var/www/html
+    networks:
+      - internal
+    depends_on:
+      - php
+  db:
+    container_name: db
+    image: postgres:16
+    environment:
+      - POSTGRES_DB=diploma_db
+      - POSTGRES_USER=tsyden
+      - POSTGRES_PASSWORD=kalakal
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./sql:/docker-entrypoint-initdb.d:ro
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tsyden -d diploma_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4G
+
+volumes:
+  db_data:
