@@ -6,6 +6,10 @@ use Core\Config\Config;
 use Core\Config\ConfigInterface;
 use Core\Http\Request\Request;
 use Core\Http\Request\RequestInterface;
+use Core\Session\Session;
+use Core\Session\SessionInterface;
+use Core\Validator\Validator;
+use Core\Validator\ValidatorInterface;
 use Core\View\View;
 use Core\View\ViewInterface;
 
@@ -14,6 +18,8 @@ class Container implements ContainerInterface
     private ?ConfigInterface $config = null;
     private ?RequestInterface $request = null;
     private ?ViewInterface $view = null;
+    private ?SessionInterface $session = null;
+    private ?ValidatorInterface $validator = null;
 
     public function getConfig(): ConfigInterface
     {
@@ -37,5 +43,28 @@ class Container implements ContainerInterface
             $this->view = new View($this);
         }
         return $this->view;
+    }
+
+    public function getSession(): SessionInterface
+    {
+        if ($this->session === null) {
+            $this->session = new Session();
+            $this->session->setOptions([
+                'cookie_secure' => true,
+                'cookie_httponly' => true,
+                'gc_maxlifetime' => 3600
+            ]);
+            $this->session->start();
+        }
+        return $this->session;
+    }
+
+
+    public function getValidator(): ValidatorInterface
+    {
+        if ($this->validator === null) {
+            $this->validator = new Validator();
+        }
+        return $this->validator;
     }
 }
