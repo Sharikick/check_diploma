@@ -1,0 +1,107 @@
+.app {
+    display: flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 4px;
+}
+
+.label {
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 10px 16px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 4px;
+    background-color: #2196f3;
+    transition: background-color 0.2s linear;
+}
+
+.btn:hover {
+    background-color: blue;
+}
+
+.radio_group {
+    display: flex;
+    justify-content: center;
+}
+
+.radio {
+    display: none;
+}
+
+.radio_block {
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid #333;
+    border-right-width: 0;
+    transition: background-color .2s linear;
+}
+
+.radio:checked + .radio_block {
+    color: #fff;
+    background-color: #2196f3;
+}
+
+.radio_block:hover {
+    background-color: #8DDEFF;
+
+}
+
+.radio_block:last-child {
+    border-right-width: 1px;
+}
+
+.radio_left {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.radio_right {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+.errors {
+    position: absolute;
+    top: 0;
+    left: 120%;
+    right: -600px;
+}
+
+.error {
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 20px;
+    background-color: #F24D4D;
+    padding: 8px 16px;
+    border-radius: 8px;
+}

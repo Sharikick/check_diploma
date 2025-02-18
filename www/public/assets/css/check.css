@@ -1,0 +1,38 @@
+.app {
+    display:  flex;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.file {
+    padding: 10px;
+    border: 2px solid #333;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 0 4px #333;
+}
+
+.btn {
+    padding: 10px 16px;
+    cursor: pointer;
+    color: #fff;
+    border-radius: 4px;
+    background-color: #2196f3;
+    transition: background-color 0.2s linear;
+}
+
+.btn:hover {
+    background-color: blue;
+}
