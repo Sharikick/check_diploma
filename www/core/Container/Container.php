@@ -4,6 +4,8 @@ namespace Core\Container;
 
 use Core\Config\Config;
 use Core\Config\ConfigInterface;
+use Core\Container\Repository\Repository;
+use Core\Container\Service\Service;
 use Core\Database\Database;
 use Core\Database\DatabaseInterface;
 use Core\Http\Request\Request;
@@ -23,6 +25,9 @@ class Container implements ContainerInterface
     private ?SessionInterface $session = null;
     private ?ValidatorInterface $validator = null;
     private ?DatabaseInterface $db = null;
+
+    use Service;
+    use Repository;
 
     public function getConfig(): ConfigInterface
     {
