@@ -18,7 +18,7 @@ class View implements ViewInterface
             throw new \RuntimeException("По пути '$templatePath' не найден шаблон");
         }
 
-        extract(array_merge($data, ["view" => $this]));
+        extract(array_merge($data, ["view" => $this, "session" => $this->container->getSession()]));
 
         include_once $templatePath;
     }
@@ -31,7 +31,7 @@ class View implements ViewInterface
             throw new \Exception("По пути '$componentPath' не найден компонент");
         }
 
-        extract(["view" => $this]);
+        extract(["view" => $this, "auth" => $this->container->getAuthService()]);
 
         if ($repeat) {
             include $componentPath;
