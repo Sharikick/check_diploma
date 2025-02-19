@@ -14,5 +14,9 @@ return [
         '/report' => [DiplomaController::class, 'reportPage'],
         '/check' => [DiplomaController::class, 'checkPage']
     ],
-    "POST" => []
+    "POST" => [
+        '/register' => [AuthController::class, 'registerUser'],
+        '/login' => [AuthController::class, 'authenticateUser'],
+        '/check' => [DiplomaController::class, 'checkDiploma']
+    ]
 ];

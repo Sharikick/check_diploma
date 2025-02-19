@@ -12,16 +12,13 @@
         <meta charset="utf-8" />
         <title><?=$title?></title>
         <link rel="stylesheet" href="/assets/css/global.css" />
-        <link rel="stylesheet" href="/assets/css/not-found.css" />
         <link rel="stylesheet" href="/assets/css/component/header.css" />
     </head>
 
     <body class="app">
         <?php $view->component("header", false) ?>
         <main class="main">
-            <h1 class="title">
-                404 Not Found
-            </h1>
+            Main
         </main>
     </body>
 
