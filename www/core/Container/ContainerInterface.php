@@ -3,6 +3,7 @@
 namespace Core\Container;
 
 use Core\Config\ConfigInterface;
+use Core\Container\Diploma\DiplomaInterface;
 use Core\Container\Repository\RepositoryInterface;
 use Core\Container\Service\ServiceInterface;
 use Core\Database\DatabaseInterface;
@@ -11,7 +12,7 @@ use Core\Session\SessionInterface;
 use Core\Validator\ValidatorInterface;
 use Core\View\ViewInterface;
 
-interface ContainerInterface extends ServiceInterface, RepositoryInterface {
+interface ContainerInterface extends ServiceInterface, RepositoryInterface, DiplomaInterface {
     public function getConfig(): ConfigInterface;
     public function getRequest(): RequestInterface;
     public function getView(): ViewInterface;

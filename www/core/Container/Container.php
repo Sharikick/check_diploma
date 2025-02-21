@@ -4,6 +4,7 @@ namespace Core\Container;
 
 use Core\Config\Config;
 use Core\Config\ConfigInterface;
+use Core\Container\Diploma\Diploma;
 use Core\Container\Repository\Repository;
 use Core\Container\Service\Service;
 use Core\Database\Database;
@@ -28,6 +29,7 @@ class Container implements ContainerInterface
 
     use Service;
     use Repository;
+    use Diploma;
 
     public function getConfig(): ConfigInterface
     {
